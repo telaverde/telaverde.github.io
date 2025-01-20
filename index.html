@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/png" href="favicon-green-screen.png">
+    <title>Tela Verde</title>
+    <style>
+        :root {
+            --bs-border-radius: 10px;
+            --bs-border-width: 1px;
+            --bs-border-style: solid;
+            --bs-border-color: #ccc;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: #333;
+            padding: 10px 20px;
+            padding-bottom: 20px;
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .logo a:hover {
+            text-decoration: underline;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-left: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+            font-weight: bold;
+            margin-right: 50px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 3px 0;
+            margin-right: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                background: #5e6497;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .menu a {
+                padding: 10px;
+                border-bottom: 1px solid white;
+            }
+
+            .menu a:last-child {
+                border-bottom: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+        }
+
+        hr {
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+        }
+
+        .paragraph {
+            font-family: "Verdana", sans-serif;
+            font-size: 16px;
+            /* Adjust size as "400" may not be a valid CSS size */
+            font-weight: 400;
+            margin: 10%;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            align-content: center;
+            line-height: 24px;
+            color: #333;
+            /* Optional: Change text color */
+            padding-top: 0%;
+            /* Optional padding for breathing room */
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .paragraph {
+                font-size: 16px;
+                /* Slightly smaller font size for smaller screens */
+                margin: 3%;
+                /* Reduced margin for better use of screen space */
+                line-height: 1.5;
+                /* Adjust line height for smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .paragraph {
+                font-size: 16px;
+                /* Further reduce font size for very small screens */
+                margin: 2%;
+                /* Minimize margins to maximize screen space usage */
+                text-align: justify;
+                /* Align text for a cleaner look on mobile */
+            }
+        }
+
+        /* Style for bold text */
+        b,
+        strong {
+            color: #34495e;
+        }
+
+        .main-heading {
+            font-size: 1.5;
+            font-weight: bold;
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 5px;
+        }
+
+        .sub-heading {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 10%;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            text-align: center;
+            color: #34495e;
+            text-transform: capitalize;
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2rem;
+            }
+
+            .sub-heading {
+                font-size: 1.3rem;
+                font-weight: 600;
+                align-content: center;
+            }
+        }
+
+        .instructions-section {
+            margin: 10%;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions-section h2 {
+            font-size: 24px;
+            color: #34495e;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .instructions-paragraph {
+            font-size: 17px;
+            color: #555;
+            margin-bottom: 15px;
+            /* Space between paragraph and list */
+            line-height: 1.6;
+        }
+
+        .instructions-list {
+            list-style: decimal;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .instructions-list li {
+            margin-bottom: 10px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        /* Custom bullet styling */
+        .instructions-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background-color: #1877f2;
+            /* Custom color for bullets */
+            border-radius: 50%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .instructions-section {
+                padding: 15px;
+                margin: 10%;
+                margin-top: 0%;
+                margin-bottom: 0%;
+                margin-right: 5%;
+                margin-left: 5%;
+            }
+
+            .instructions-section h2 {
+                font-size: 20px;
+            }
+
+            .instructions-list li {
+                font-size: 16px;
+            }
+        }
+
+        footer {
+            background-color: #343a40;
+            color: var(--text-color);
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .footer-sections div {
+            text-align: center;
+        }
+
+        .footer-sections a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 5px 0;
+            display: block;
+        }
+
+        .footer-sections a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        header,
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: green;
+            color: white;
+        }
+
+        .green-screen-container img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            cursor: pointer;
+            background-color: green;
+            border-radius: var(--bs-border-radius) !important;
+            border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+        }
+
+        .controls {
+            background-color: white;
+            padding: 20px;
+            border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+            border-radius: var(--bs-border-radius) !important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .controls h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            flex: 1;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .input-group input,
+        .input-group select {
+            flex: 2;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-download {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-download:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                padding: 15px;
+                box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1) !important;
+                max-width: 90%;
+            }
+
+            .controls h1 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .input-group label {
+                text-align: left;
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+
+            .input-group input,
+            .input-group select {
+                flex: unset;
+                width: 100%;
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .btn-download {
+                font-size: 14px;
+                padding: 8px 15px;
+                margin-top: 10px;
+            }
+        }
+
+        #green-screen-full {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: green;
+            display: none;
+            z-index: 9999;
+        }
+
+        .fullscreen-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            z-index: 10000;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">Tela Verde On-line</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="menu">
+            <a href="sobre-nós.html">Sobre-nós</a>
+            <a href="contate-nos.html">Contate-nos</a>
+        </nav>
+    </header>
+    <hr>
+    <h1 class="main-heading">Tela Verde On-line</h1>
+
+    <div class="paragraph">
+        Uma tela verde é um fundo verde brilhante usado em vídeos e fotos para criar efeitos especiais. Com a ajuda de
+        um software, a cor verde é substituída por qualquer imagem ou vídeo, fazendo com que pareça que você está em
+        outro lugar, como em uma praia ou no espaço. Essa técnica, chamada de “chroma keying”, é popular em filmes, na
+        TV e até mesmo em vídeos do YouTube. </div>
+
+    &nbsp;
+
+    <div class="green-screen-container">
+        <img src="tela-verde.png" alt="Tela Verde" onclick="enterFullScreen()">
+    </div>
+    <hr>
+    <div class="controls">
+        <h1>Baixe a tela verde em qualquer tamanho</h1>
+        <div class="input-group">
+            <label for="quality">Qualidade:</label>
+            <select id="quality" onchange="updateSizeByQuality()">
+                <option value="1920x1080">1080p</option>
+                <option value="1280x720">720p</option>
+                <option value="854x480">480p</option>
+                <option value="2560x1440">1440p 2K</option>
+                <option value="3840x2160">2160p 4K</option>
+                <option value="7680x4320">4320p 8K</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="width">Largura (px):</label>
+            <input type="number" id="width" min="1" placeholder="1920" disabled>
+        </div>
+        <div class="input-group">
+            <label for="height">Altura (px):</label>
+            <input type="number" id="height" min="1" placeholder="1080" disabled>
+        </div>
+        <button class="btn-download" onclick="downloadGreenScreen()">Download</button>
+    </div>
+
+    <div id="green-screen-full"></div>
+    <div class="fullscreen-message" id="fullscreen-message">Para sair do modo de tela cheia, pressione Esc.</div>
+    <hr>
+
+    <h2 class="sub-heading">Como posso usar a tela verde?</h2>
+    <!-- Heading section -->
+    <hr>
+    <div class="paragraph">
+        Usar uma tela verde é fácil se você seguir algumas etapas simples. Veja como você pode fazer isso: </div>
+    <hr>
+    <div class="paragraph"> <b>Configure a tela verde:</b> Coloque a tela verde atrás de você ou do objeto que deseja
+        filmar. Certifique-se de que a
+        tela seja lisa e tenha iluminação uniforme para evitar sombras.</div>
+    &nbsp;
+    <div class="paragraph"> <b>Grave seu vídeo:</b> Filme o vídeo com a tela verde ao fundo.
+        Certifique-se de que a pessoa ou o objeto não esteja usando verde, ou eles também poderão desaparecer durante a
+        edição.</div>
+    &nbsp;
+    <div class="paragraph"> <b>Edite o vídeo:</b> Use um software especial como o Adobe
+        Premiere, Final Cut Pro ou até mesmo aplicativos gratuitos como o iMovie para remover o fundo verde. Substitua-o
+        por qualquer fundo ou cena de sua preferência.</div>
+    &nbsp;
+
+    <div class="paragraph"> Com alguns cliques, você pode criar vídeos com aparência profissional ou fotos divertidas
+        usando uma tela verde!</div>
+    &nbsp;
+
+    <div class="instructions-section">
+        <h2>Como usar? </h2>
+        <p class="instructions-paragraph">
+            Aqui está o guia passo a passo para usar nossa tela verde
+        </p>
+        <ol class="instructions-list">
+            <li>Abra a tela verde: Clique na imagem da tela verde ou no ícone de tela cheia. Isso fará com que seu
+                navegador mostre um fundo totalmente verde.</li>
+            <li>Sair da tela cheia: Se quiser voltar, basta clicar na tela novamente.
+                Faça o download da tela verde:</li>
+            <li>Escolha uma resolução no menu suspenso ou digite as dimensões personalizadas para obter o tamanho
+                necessário.</li>
+            <li>Clique no botão “Download” para salvar o fundo de tela verde no seu dispositivo.</li>
+        </ol>
+    </div>
+    &nbsp;
+
+    <h2 class="sub-heading">Por que as pessoas usam telas verdes?</h2>
+    <!-- Heading section -->
+    &nbsp;
+    <div class="paragraph">As pessoas adoram usar telas verdes porque elas são muito versáteis.
+        Aqui estão alguns motivos comuns:</div>
+    <hr>
+
+    <div class="paragraph"> <b>Vídeos criativos:</b> As telas verdes ajudam a criar vídeos legais e
+        criativos, adicionando diferentes fundos e efeitos.</div>
+    &nbsp;
+    <div class="paragraph"> <b>Economia de tempo e dinheiro:</b> Em vez de viajar para
+        diferentes locais, você pode filmar tudo em um só lugar e mudar
+        o fundo depois.</div>
+    &nbsp;
+    <div class="paragraph"> <b>Aparência profissional:</b> Elas dão aos vídeos uma aparência mais refinada e
+        profissional, seja para filmes, programas
+        de TV ou conteúdo on-line.</div>
+    &nbsp;
+    <div class="paragraph"> <b>Educação e trabalho:</b> Professores e profissionais usam telas verdes para
+        apresentações, aulas on-line ou reuniões
+        virtuais para tornar suas sessões mais envolventes.</div>
+        <hr>
+        <div class="paragraph">As telas verdes abrem infinitas possibilidades. Quer esteja fazendo um vídeo divertido
+            para a mídia social ou
+            trabalhando em um grande projeto, essa ferramenta simples pode ajudá-lo a obter resultados incríveis! </div>
+            &nbsp;
+
+            <div class="paragraph"> <b>© 2025 Tela Verde On-line. Todos os direitos reservados.</b> </div>
+            
+
+        <script>
+            function enterFullScreen() {
+                const fullScreen = document.getElementById('green-screen-full');
+                const message = document.getElementById('fullscreen-message');
+
+                fullScreen.style.display = 'block';
+                message.style.display = 'block';
+
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
+
+                document.addEventListener('keydown', exitFullScreen);
+            }
+
+            function exitFullScreen(event) {
+                if (event.key === 'Escape') {
+                    const fullScreen = document.getElementById('green-screen-full');
+                    fullScreen.style.display = 'none';
+                    document.removeEventListener('keydown', exitFullScreen);
+                }
+            }
+
+            function updateSizeByQuality() {
+                const quality = document.getElementById('quality').value;
+                const widthInput = document.getElementById('width');
+                const heightInput = document.getElementById('height');
+
+                if (quality === 'custom') {
+                    widthInput.disabled = false;
+                    heightInput.disabled = false;
+                    widthInput.value = '';
+                    heightInput.value = '';
+                } else {
+                    const [width, height] = quality.split('x').map(Number);
+                    widthInput.value = width;
+                    heightInput.value = height;
+                    widthInput.disabled = true;
+                    heightInput.disabled = true;
+                }
+            }
+
+            function downloadGreenScreen() {
+                const width = parseInt(document.getElementById('width').value);
+                const height = parseInt(document.getElementById('height').value);
+
+                if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+                    alert('Please enter valid dimensions.');
+                    return;
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#00FF00';
+                ctx.fillRect(0, 0, width, height);
+
+                const link = document.createElement('a');
+                link.download = `green_screen_${width}x${height}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        </script>
+</body>
+
+</html>

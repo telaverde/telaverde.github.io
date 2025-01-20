@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/png" href="favicon-green-screen.png">
+    <title>Sobre nós</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Verdana', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: #333;
+            padding: 10px 20px;
+            padding-bottom: 20px;
+            background-color: #0a0e31;
+            color: white;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .logo a:hover {
+            text-decoration: underline;
+            /* Optional: Adds a hover effect */
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-left: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+            font-weight: bold;
+            margin-right: 50px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+            /* Optional: Adds a hover effect */
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 3px 0;
+            margin-right: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                background: #5e6497;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+
+            .menu a {
+                padding: 10px;
+                border-bottom: 1px solid white;
+            }
+
+            .menu a:last-child {
+                border-bottom: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        header,
+  footer {
+    width: 100%;
+    text-align: center; /* Center text within header/footer */
+    padding: 10px 0; /* Add some padding */
+    background-color: green; /* Optional: background color for header/footer */
+    color: white; /* Optional: text color */
+  }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">Tela Verde On-line</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="menu">
+            <a href="tela-verde.html">Início</a>
+            <a href="sobre-nós.html">sobre-nós</a>
+            <a href="contate-nos.html">Contate-nos</a>
+        </nav>
+    </header>
+
+    <!-- About Us Section -->
+    <div class="container">
+        <h1>Sobre nós</h1>
+        <p>
+            Bem-vindo à nossa ferramenta de Tela Verde! Criamos essa ferramenta simples e fácil de usar para ajudá-lo a
+            dar vida às suas ideias criativas. Quer esteja fazendo vídeos, editando fotos ou apenas experimentando algo
+            divertido, nossa ferramenta oferece fundos de tela verde de alta qualidade que podem ser acessados e
+            baixados rapidamente.
+        </p>
+        <p>
+            Não são necessárias etapas complicadas ou habilidades técnicas - basta clicar,
+            personalizar e pronto! Nosso objetivo é tornar os efeitos de tela verde acessíveis a todos, de iniciantes a
+            profissionais. Experimente e veja como é fácil adicionar um pouco de magia aos seus projetos!
+        </p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Tela Verde On-line. All rights reserved. <a href="terms.html">Terms of Use</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
